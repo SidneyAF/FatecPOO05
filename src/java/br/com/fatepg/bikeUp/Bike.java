@@ -78,4 +78,36 @@ public class Bike {
         Object parameters[] = {id};
         DataBaseConnector.execute(SQL, parameters);
     }
+    
+    public static Bike getDadosBike(int id) throws Exception{
+        String SQL = "SELECT * from bike where id_bike = ?";
+        Object parameters [] = {id};
+        ArrayList<Object[]> list = DataBaseConnector.getQuery(SQL, parameters);
+        if (list.isEmpty()) {
+            return null;
+        } else {
+            Object row[] = list.get(0);
+            Bike b = new Bike((int) (row[0]),
+                    (double) row[1],
+                    (String) row[2],
+                    (String) row[3]);
+            return b;
+        }
+    }
+    
+    public static void editBike(int id, double precoHora, String modelo) throws Exception{
+        String SQL = "UPDATE  BIKE SET VL_PRECOHORA = ?, NM_MODELO = ? " +
+        "WHERE ID_BIKE = ?";
+        Object parameters[] = {precoHora, modelo,id};
+        DataBaseConnector.execute(SQL, parameters);
+    }
+    
+    public static void reservaBike(int id, String status) throws Exception{
+        String SQL = "UPDATE  BIKE SET DSC_STATUS = ? " +
+        "WHERE ID_BIKE = ?";
+        Object parameters[] = {status,id};
+        DataBaseConnector.execute(SQL, parameters);
+    }
+    
+    
 }

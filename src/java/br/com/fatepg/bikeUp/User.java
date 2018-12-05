@@ -91,7 +91,7 @@ public class User {
     }
 
     public static ArrayList<Object[]> getRanking() throws Exception {
-        String SQL = "SELECT COUNT(*), B.NM_MODELO, SUM(A.VL_TOTAL) FROM ALUGUEL A, BIKE B WHERE A.FK_ID_BIKE = B.ID_BIKE GROUP BY B.NM_MODELO";
+        String SQL = "SELECT COUNT(*), B.NM_MODELO, SUM(A.VL_TOTAL) FROM ALUGUEL A, BIKE B WHERE A.FK_ID_BIKE = B.ID_BIKE GROUP BY B.NM_MODELO ORDER BY COUNT(*) desc";
         ArrayList<Object[]> list = DataBaseConnector.getQuery(SQL, new Object[]{});
         if (list.isEmpty()) {
             return null;
@@ -104,5 +104,11 @@ public class User {
         }
         return list;
     }
-
+    
+    public static void addUser(String cpf, String nome, String telefone, String login, String senha) throws Exception{
+        String SQL = "Insert into Usuario(CPF_USUARIO,NM_USUARIO,NM_TELEFONE,NM_LOGN,NM_SENHA,TIPO_USUARIO) VALUES"
+                + "(?,?,?,?,?,'user')";
+        Object parameters[] = {cpf,nome,telefone,login,senha};
+        DataBaseConnector.execute(SQL, parameters);
+    }
 }

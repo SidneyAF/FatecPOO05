@@ -34,6 +34,7 @@
                 <th>Preço por hora</th>
                 <th>Status</th>
                 <th>.</th>
+                <th>.</th>
             </tr>
             <% for (Bike b : Bike.getBikes()) {%>
             <tr>
@@ -41,14 +42,17 @@
                 <td><%= b.getModelo()%></td>
                 <td><%= b.getValor()%></td>
                 <td><%= b.getStatus()%></td>
-                <td><form>
+                <td>
+                    <a href="alterarBike.jsp?id=<%= b.getId()%>"><button>Alterar</button></a>
+                </td>
+                <td>
+                    <form>
                         <input type="hidden" name="id" value="<%= b.getId()%>">
-                        <input type="submit" name="alteraBike" value="Alterar">
                         <input type="submit" name="deletaBike" value="Deletar">
                     </form>
                 </td>
-                <%}%>
             </tr>
+            <%}%>
             <%}%>
         </table>
         <br>

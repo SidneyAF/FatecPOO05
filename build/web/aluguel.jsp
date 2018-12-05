@@ -1,3 +1,4 @@
+<%@page import="br.com.fatepg.bikeUp.Aluguel"%>
 <%@page import="br.com.fatepg.bikeUp.Bike"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -42,7 +43,6 @@
             <%}%>
         </table>
         <%};%>
-
         <!-- ____________________ NAVEGAÇÃO DO ADM _________________________ -->
         <%if (user.getTipo().equals("adm")) {%>
         <h3>Raking de Reservas</h3><br>
@@ -64,26 +64,32 @@
             </tr>
             <% }%>
         </table>
-        <h3>Bikes Alugadas</h3><br>
+        <br>
+        <hr/>
+        <!---- _________________ TABELA HISTORIO _______________________________ -->
+        <h3>Histórico</h3><br>
         <table border="1">
             <tr>
-                <th>Rank</th>
-                <th>Modelo</th>
-                <th>Nº Reservas</th>
-                <th>Total arrecadado</th>
+                <th>#</th>
+                <th>Usuario</th>
+                <th>Tipo pagamento</th>
+                <th>Valor total</th>
+                <th>Horário de retirada</th>
+                <th>Horário de devolução</th>
             </tr>
             <%  int j = 0;
-                for (Object[] u : User.getRanking()) {
-                    j++;%>
+                for (Aluguel a : Aluguel.getAluguel()) {
+            j++;%>
             <tr>
-                <td><%=j%>º</td>
-                <td><%=u[1]%></td>
-                <td><%=u[0]%></td>
-                <td>R$ <%=u[2]%></td>
+                <td><%= j %></td>
+                <td><%= a.getLoginUsuario() %></td>
+                <td><%= a.getTipoPagamento() %></td>
+                <td>R$ <%= a.getVlTotal() %></td>
+                <td><%= a.getHrRetirado()%></td>
+                <td><%= a.getHrDevolucao() %></td>
             </tr>
-            <% }%>
+            <% }}}%>
         </table>
-        <%}%>
-        <%}%>
+        <br>
     </body>
 </html>

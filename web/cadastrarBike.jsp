@@ -20,13 +20,12 @@
                 int idBike = Integer.parseInt(request.getParameter("idBike"));
                 String modelo = request.getParameter("modelo");
                 double precoHora = Double.parseDouble(request.getParameter("precoHora"));
-                out.print(modelo);
-                out.print(precoHora);
                 try {
                     Bike.addBike(idBike,precoHora, modelo);
                 } catch (Exception e) {
                     error = e.getMessage();
                 }
+                response.sendRedirect("exibeBike.jsp");
             };
         %>
         <% User user = (User) session.getAttribute("user");%>
@@ -35,7 +34,7 @@
             Id <input type="text" name="idBike"/>
             Modelo <input type="text" name="modelo"/>
             Preço por hora <input type="text" name="precoHora"/>
-            <input type="submit" name="cadastraBike">
+            <input type="submit" name="cadastraBike" value="Cadastrar">
         </form>
         <%} else {%>
         <h2>Recurso restrito.</h2>

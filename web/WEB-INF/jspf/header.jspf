@@ -17,7 +17,7 @@
     }
     if (request.getParameter("formLogoff") != null) {
         session.removeAttribute("user");
-        response.sendRedirect(request.getRequestURI());
+        response.sendRedirect("home.jsp");
     };
 %>
 <h1>BIKE UP</h1>
