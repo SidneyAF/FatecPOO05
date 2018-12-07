@@ -68,8 +68,6 @@ public class User {
         this.telefone = telefone;
     }
 
-
-
     public static User getUser(String login, String senha)
             throws Exception {
         String SQL = "SELECT * FROM USUARIO " + "WHERE nm_login = ? AND nm_senha = ? ";
@@ -111,4 +109,54 @@ public class User {
         Object parameters[] = {cpf,nome,telefone,login,senha};
         DataBaseConnector.execute(SQL, parameters);
     }
+    public static void removeUser(String cpf) throws Exception{
+        String SQL = "Delete from USUARIO where CPF_USUARIO = ?";
+        Object parameters[] = {cpf};
+        DataBaseConnector.execute(SQL, parameters);
+    }
+    
+    public static User getDadosUser(String cpf) throws Exception{
+        String SQL = "SELECT * from USUARIO where CPF_USUARIO = ?";
+        Object parameters [] = {cpf};
+        ArrayList<Object[]> list = DataBaseConnector.getQuery(SQL, parameters);
+        if (list.isEmpty()) {
+            return null;
+        } else {
+            Object row[] = list.get(0);
+            User u = new User(
+                    (String) (row[0]),
+                    (String) row[1],
+                    (String) row[2],
+                    (String) row[3],
+                    (String) row[4],
+                    (String) row[5]);
+            return u;
+        }
+    }
+    
+    public static void editUser(String cpf, String login, String senha, String nome, String telefone, String tipo) throws Exception{
+        String SQL = "UPDATE  USUARIO SET CPF_USUARIO, NM_USUARIO, NM_TELEFONE,NM_LOGIN,NM_SENHA,TIPO_USUARIO = ? " +
+        "WHERE CPF_USUARIO = ?";
+        Object parameters[] = {cpf, login, senha, nome, telefone, tipo};
+        DataBaseConnector.execute(SQL, parameters);
+    }
+    
+    public static ArrayList<User> getUsuarios() throws Exception {
+        String SQL = "SELECT * from USUARIO";
+        ArrayList<User> usuarios = new ArrayList<>();
+        ArrayList<Object[]> list = DataBaseConnector.getQuery(SQL, new Object[]{});
+        for(int i=0; i<list.size();i++){
+            Object row[] = list.get(i);
+            User u = new User(
+                    (String) (row[0]),
+                    (String) row[1],
+                    (String) row[2],
+                    (String) row[3],
+                    (String) row[4],
+                    (String) row[5]);
+            usuarios.add(u);
+        }
+        return usuarios;
+    }
+
 }
