@@ -70,7 +70,7 @@ public class User {
 
     public static User getUser(String login, String senha)
             throws Exception {
-        String SQL = "SELECT * FROM USUARIO " + "WHERE nm_login = ? AND nm_senha = ? ";
+        String SQL = "SELECT * FROM USUARIOS " + "WHERE nm_login = ? AND nm_senha = ? ";
         Object parameters[] = {login, senha};
         ArrayList<Object[]> list = DataBaseConnector.getQuery(SQL, parameters);
 
@@ -78,7 +78,8 @@ public class User {
             return null;
         } else {
             Object row[] = list.get(0);
-            User u = new User((String) (row[0]),
+            User u = new User(
+                    (String)(row[0]),
                     (String) row[1],
                     (String) row[2],
                     (String) row[3],
@@ -89,7 +90,7 @@ public class User {
     }
 
     public static ArrayList<Object[]> getRanking() throws Exception {
-        String SQL = "SELECT COUNT(*), B.NM_MODELO, SUM(A.VL_TOTAL) FROM ALUGUEL A, BIKE B WHERE A.FK_ID_BIKE = B.ID_BIKE GROUP BY B.NM_MODELO ORDER BY COUNT(*) desc";
+        String SQL = "SELECT COUNT(*), B.NM_MODELO, SUM(A.VL_TOTAL) FROM ALUGUEL A, BIKE B WHERE A.ID_BIKE = B.ID_BIKE GROUP BY B.NM_MODELO ORDER BY COUNT(*) desc";
         ArrayList<Object[]> list = DataBaseConnector.getQuery(SQL, new Object[]{});
         if (list.isEmpty()) {
             return null;
@@ -104,19 +105,19 @@ public class User {
     }
     
     public static void addUser(String cpf, String nome, String telefone, String login, String senha) throws Exception{
-        String SQL = "Insert into Usuario(CPF_USUARIO,NM_USUARIO,NM_TELEFONE,NM_LOGN,NM_SENHA,TIPO_USUARIO) VALUES"
+        String SQL = "Insert into USUARIOS(CPF_USUARIO,NM_USUARIO,NM_TELEFONE,NM_LOGN,NM_SENHA,TIPO_USUARIO) VALUES"
                 + "(?,?,?,?,?,'user')";
         Object parameters[] = {cpf,nome,telefone,login,senha};
         DataBaseConnector.execute(SQL, parameters);
     }
     public static void removeUser(String cpf) throws Exception{
-        String SQL = "Delete from USUARIO where CPF_USUARIO = ?";
+        String SQL = "Delete from USUARIOS where CPF_USUARIO = ?";
         Object parameters[] = {cpf};
         DataBaseConnector.execute(SQL, parameters);
     }
     
     public static User getDadosUser(String cpf) throws Exception{
-        String SQL = "SELECT * from USUARIO where CPF_USUARIO = ?";
+        String SQL = "SELECT * from USUARIOS where CPF_USUARIO = ?";
         Object parameters [] = {cpf};
         ArrayList<Object[]> list = DataBaseConnector.getQuery(SQL, parameters);
         if (list.isEmpty()) {
@@ -135,14 +136,14 @@ public class User {
     }
     
     public static void editUser(String cpf, String login, String senha, String nome, String telefone, String tipo) throws Exception{
-        String SQL = "UPDATE  USUARIO SET CPF_USUARIO, NM_USUARIO, NM_TELEFONE,NM_LOGIN,NM_SENHA,TIPO_USUARIO = ? " +
+        String SQL = "UPDATE  USUARIO SET CPF_USUARIOS, NM_USUARIO, NM_TELEFONE,NM_LOGIN,NM_SENHA,TIPO_USUARIO = ? " +
         "WHERE CPF_USUARIO = ?";
         Object parameters[] = {cpf, login, senha, nome, telefone, tipo};
         DataBaseConnector.execute(SQL, parameters);
     }
     
     public static ArrayList<User> getUsuarios() throws Exception {
-        String SQL = "SELECT * from USUARIO";
+        String SQL = "SELECT * from USUARIOS";
         ArrayList<User> usuarios = new ArrayList<>();
         ArrayList<Object[]> list = DataBaseConnector.getQuery(SQL, new Object[]{});
         for(int i=0; i<list.size();i++){
