@@ -10,7 +10,7 @@
 
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Cadastrar Bike</title>
+        <title>Cadastrar Usuário</title>
     </head>
     <body>
         <%@include file="WEB-INF/jspf/header.jspf" %>
@@ -25,7 +25,7 @@
                 String loginUsuario    = request.getParameter("loginUsuario");
                 String senhaUsuario    = request.getParameter("senhaUsuario");
                 String nomeUsuario     = request.getParameter("nomeUsuario");
-                String telefoneUsuario = request.getParameter("telUsuario");
+                String telefoneUsuario = request.getParameter("telefoneUsuario");
                 
                 try {
                     User.addUser(cpfUsuario, nomeUsuario, loginUsuario, senhaUsuario, telefoneUsuario);
@@ -44,7 +44,7 @@
             Senha    <input type="text" name="senhaUsuario"/>
             Telefone <input type="text" name="telefoneUsuario"/>
             
-            <input type="submit" name="cadastraBike" value="Cadastrar">
+            <input type="submit" name="cadastrarUsuario" value="Cadastrar">
         </form>
         <%} else {%>
         <h2>Recurso restrito.</h2>

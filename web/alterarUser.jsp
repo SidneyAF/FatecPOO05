@@ -26,10 +26,10 @@
         <form action="editUser.jsp" method="POST">
             <input type="hidden" name="cpf" value="<%= cpf%>"/><br>
             Nome <input type="text" name="nomeUsuario" value="<%= u.getNome()%>"/><br>
-            Tipo <input type="text" name="nomeUsuario" value="<%= u.getTipo()%>"/><br>
-            Login <input type="text" name="nomeUsuario" value="<%= u.getLogin()%>"/><br>
-            Senha <input type="text" name="nomeUsuario" value="<%= u.getSenha()%>"/><br>
-            Telefone <input type="text" name="nomeUsuario" value="<%= u.getTelefone()%>"/><br>
+            Tipo <input type="text" name="tipoUsuario" value="<%= u.getTipo()%>"/><br>
+            Login <input type="text" name="loginUsuario" value="<%= u.getLogin()%>"/><br>
+            Senha <input type="text" name="senhaUsuario" value="<%= u.getSenha()%>"/><br>
+            Telefone <input type="text" name="telefoneUsuario" value="<%= u.getTelefone()%>"/><br>
             <input type="submit" name="alteraUser" value="Alterar">
         </form>
         <%} else {%>

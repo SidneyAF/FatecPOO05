@@ -11,6 +11,6 @@
         String cpfUsuario      = request.getParameter("cpfUsuario");
         String loginUsuario    = request.getParameter("loginUsuario");
         String senhaUsuario    = request.getParameter("senhaUsuario");
-        String telefoneUsuario = request.getParameter("telUsuario");
+        String telefoneUsuario = request.getParameter("telefoneUsuario");
         response.sendRedirect("exibeUser.jsp");
    }%>
