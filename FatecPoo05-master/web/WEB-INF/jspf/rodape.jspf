@@ -1,0 +1,16 @@
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container">
+       <div class="row" data-aos-anchor-placement="bottom-bottom" data-aos-duration="3000">
+           <ul>
+               <li><a href="https://github.com/SidneyAF/FatecPoo05">Projeto GitHub </a></li>
+           </ul>
+           </div>
+    </div>
+
+</nav>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/animate.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.viewbox.min.js"></script>
+    <script src="js/custom.js"></script>

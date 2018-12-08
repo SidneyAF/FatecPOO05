@@ -7,6 +7,7 @@
         <title>Alterar Bicicleta</title>
     </head>
     <body>
+        <%@include file="WEB-INF/jspf/menu.jspf" %>
         <%@include file="WEB-INF/jspf/header.jspf" %>
         <h1>Alterar Bicicleta</h1>
         <% if (session.getAttribute("user") == null) { %>

@@ -1,3 +1,14 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  
+          <link href="assets/css/animate.css" rel="stylesheet">
+          <link href="assets/css/viewbox.css" rel="stylesheet">
+          <link href="assets/css/main.css" rel="stylesheet">
+
+
+          <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+          <link href="https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,300,400,400i,500,500i,600,700,900" rel="stylesheet">
 
 <%@page import="br.com.fatepg.bikeUp.User"%>
 <%@ page pageEncoding="UTF-8" %>
@@ -20,6 +31,7 @@
         response.sendRedirect("home.jsp");
     };
 %>
+<div class="login">
 <h1>BIKE UP</h1>
 <% if (errorMessage != null) {%>
 <h3 style="color: red"><%= errorMessage%></h3>
@@ -27,31 +39,42 @@
 <hr/>
 <% if (session.getAttribute("user") == null) {%>
 <form method="POST">
-    Login: <input type="text" name="login" />
-    Senha: <input type="password" name="senha" />
-    <input type="submit" name="formLogin" value="Entrar"/>
+  <div class="form-group">
+    <label for="user">Login</label>
+    <input type="text" class="form-control" id="user" aria-describedby="emailHelp" placeholder="Login" name="login">
+      </div>
+  <div class="form-group">
+    <label for="password">Senha</label>
+    <input type="password" class="form-control" id="passaword" placeholder="senha" name="senha">
+  </div>
+  <button type="submit" class="btn btn-primary" name="formLogin" value="Entrar">Entrar</button>
 </form>
 <%} else {%>
-<form>
+<div class="container py-5 height-ajust">
     <% User user = (User) session.getAttribute("user");%>
 
     <% if (user.getTipo().equals("user")) {%>
     <h2>
-        <a href="<%= path%>/home.jsp"> Home</a>
-        <a href="<%= path%>/aluguel.jsp"> Alugar</a>
-        <a href="<%= path%>/bikes.jsp"> Minhas Bike</a>
+        <a href="<%= path%>/home.jsp"> Home |</a>
+        <a href="<%= path%>/aluguel.jsp"> Alugar |</a>
+        <a href="<%= path%>/exibeBike.jsp.jsp"> Minhas Bike</a>
     </h2>
     <%}%>
     <% if (user.getTipo().equals("adm")) {%>
     <h2>
-        <a href="<%= path%>/home.jsp"> Home</a>
-        <a href="<%= path%>/exibeBike.jsp">Bikes</a>
+        <a href="<%= path%>/home.jsp"> Home|</a>
+        <a href="<%= path%>/exibeBike.jsp">Bikes|</a>
         <a href="<%= path%>/aluguel.jsp"> Alugueis</a>
     </h2>
     <%}%>
     <hr/>
     Bem vindo, <%= user.getNome()%>
-    <input type="submit" name="formLogoff" value="Sair" />
+    <button type="submit" class="btn btn-primary" name="formLogoff" value="Sair" style="float:right" />Sair</button>
+    
 
-</form>
+</div>
+    </div>
 <% }%>
+
+
+    

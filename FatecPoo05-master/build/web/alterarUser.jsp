@@ -13,6 +13,7 @@
         <title>Alterar Usuário</title>
     </head>
     <body>
+        <%@include file="WEB-INF/jspf/menu.jspf" %>
         <%@include file="WEB-INF/jspf/header.jspf" %>
         <h1>Alterar Usuário</h1>
         <% if (session.getAttribute("user") == null) { %>

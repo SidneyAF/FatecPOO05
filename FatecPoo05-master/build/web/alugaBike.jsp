@@ -18,13 +18,19 @@
         <title>Aluga Bike</title>
     </head>
     <body>
+        <%@include file="WEB-INF/jspf/menu.jspf" %>
         <%@include file="WEB-INF/jspf/header.jspf" %>
+        <div class="container py-5 height-ajust">
         <h1>Alugar bike</h1>
-        <form method="post">
-                Horário da reserva <input type="time" name="hrReserva">
-            <input type="submit" value="Alugar">
-        </form>
-
+       <form method="POST">
+  <div class="form-group">
+    <label for="HR">HORÁRIO DA RESERVA</label>
+    <input type="time" class="form-control" id="HR" placeholder="HORÁRIO DA RESERVA" name="hrReserva">
+      </div>
+  
+  <button type="submit" class="btn btn-primary" value="Alugar">Alugar</button>
+        </div>
     </body>
 </html>
+
 

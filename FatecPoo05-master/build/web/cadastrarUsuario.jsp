@@ -13,7 +13,9 @@
         <title>Cadastrar Bike</title>
     </head>
     <body>
+        <%@include file="WEB-INF/jspf/menu.jspf" %>
         <%@include file="WEB-INF/jspf/header.jspf" %>
+        <div class="container py-5 height-ajust">
         <h1>Cadastrar Usuário</h1>
         <% if (session.getAttribute("user") == null) { %>
         <h2>É preciso estar autenticado para acessar este recurso.</h2>
@@ -37,18 +39,39 @@
         %>
         <% User user = (User) session.getAttribute("user");%>
         <% if (user.getTipo().equals("adm")) {%>    
-        <form method="POST">
-            CPF      <input type="text" name="cpfUsuario"/>
-            Nome     <input type="text" name="nomeUsuario"/>
-            Login    <input type="text" name="loginUsuario"/>
-            Senha    <input type="text" name="senhaUsuario"/>
-            Telefone <input type="text" name="telefoneUsuario"/>
-            
-            <input type="submit" name="cadastraBike" value="Cadastrar">
-        </form>
+   <form method="POST">
+  <div class="form-group">
+    <label for="CPF">CPF</label>
+    <input type="text" class="form-control" id="CPF" placeholder="CPF" name="cpfUsuario">
+      </div>
+  <div class="form-group">
+    <label for="NOME">NOME</label>
+    <input type="text" class="form-control" id="NOME" placeholder="NOME" name="nomeUsuario">
+  </div>
+     <div class="form-group">
+    <label for="LOGIN">LOGIN</label>
+    <input type="text" class="form-control" id="LOGIN" placeholder="LOGIN" name="loginUsuario">
+  </div>
+    <div class="form-group">
+    <label for="SENHA">SENHA</label>
+    <input type="text" class="form-control" id="SENHA" placeholder="SENHA" name="senhaUsuario">
+  </div>
+    <div class="form-group">
+    <label for="TELEFONE">TELEFONE</label>
+    <input type="text" class="form-control" id="TELEFONE" placeholder="TELEFONE" name="telefoneUsuario">
+  </div>
+  <button type="submit" class="btn btn-primary" name="cadastraBike" value="Cadastrar">Cadastrar</button>
+</form>
+
         <%} else {%>
         <h2>Recurso restrito.</h2>
         <%}
             }%>
+        </div>
     </body>
 </html>
+
+
+
+         
+      

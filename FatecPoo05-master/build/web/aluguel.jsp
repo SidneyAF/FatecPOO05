@@ -8,15 +8,20 @@
         <title>Aluguel</title>
     </head>
     <body>
+        <%@include file="WEB-INF/jspf/menu.jspf" %>
         <%@include file="WEB-INF/jspf/header.jspf" %>
+        <div class="container py-5 height-ajust">
         <h1>Aluguel</h1>
         <% if (session.getAttribute("user") == null) { %>
         <h2>É preciso estar autenticado para acessar este recurso.</h2>
         <%} else {%>
         <% User user = (User) session.getAttribute("user");%>
         <% if (user.getTipo().equals("user")) {%>
-        <table border="1">
-            <tr>
+            
+    <table class="table table-dark">
+        <tbody>
+            
+        <tr>
                 <th>#</th>
                 <th>Modelo</th>
                 <th>Preço por hora</th>
@@ -41,13 +46,14 @@
                 <%}%>
             </tr>
             <%}%>
+            </tbody>
         </table>
         <%};%>
         <!-- ____________________ NAVEGAÇÃO DO ADM _________________________ -->
         <%if (user.getTipo().equals("adm")) {%>
         <h3>Raking de Reservas</h3><br>
-        <table border="1">
-            <tr>
+        <table class="table table-dark">
+            <tbody>
                 <th>Rank</th>
                 <th>Modelo</th>
                 <th>Nº Reservas</th>
@@ -63,12 +69,14 @@
                 <td>R$ <%=u[2]%></td>
             </tr>
             <% }%>
+            </tbody>
         </table>
         <br>
         <hr/>
         <!---- _________________ TABELA HISTORIO _______________________________ -->
         <h3>Histórico</h3><br>
-        <table border="1">
+        <table class="table table-dark">
+            <tbody>
             <tr>
                 <th>#</th>
                 <th>Usuario</th>
@@ -89,7 +97,12 @@
                 <td><%= a.getHrDevolucao() %></td>
             </tr>
             <% }}}%>
+            </tbody>
         </table>
         <br>
+        </div>
+    
     </body>
+    <%@include file="WEB-INF/jspf/rodape.jspf" %>
 </html>
+
